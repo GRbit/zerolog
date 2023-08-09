@@ -379,6 +379,12 @@ func (c Context) Interface(key string, i interface{}) Context {
 	return c
 }
 
+// EmptyFields removes all the context fields.
+func (c Context) EmptyFields() Context {
+	c.l.context = enc.AppendBeginMarker(make([]byte, 0, 500))
+	return c
+}
+
 type callerHook struct {
 	callerSkipFrameCount int
 }
